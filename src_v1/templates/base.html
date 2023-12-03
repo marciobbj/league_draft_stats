@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    {% block head %}
+    <!-- Bootstrap CSS -->
+    <title>{% block title %}{% endblock %} LoL Draft Stats</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Otimização de seleção de campeões para League of Legends Solo Queue. Melhore sua estratégia de draft e aumente suas chances de vitória.">
+    <meta name="keywords" content="League of Legends, LoL, Solo Queue, Draft Strategy, Champion Selection, eSports">
+    <meta name="author" content="Márcio Bernardes">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="URL_do_Seu_Site">
+    <meta property="og:title" content="LoL Draft Stats">
+    <meta property="og:description" content="Otimização de seleção de campeões para League of Legends Solo Queue.">
+<!--    <meta property="og:image" content="URL_da_Imagem_de_Destaque">-->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="URL_do_Seu_Site">
+    <meta property="twitter:title" content="LoL Comp Crusher">
+    <meta property="twitter:description" content="Otimização de seleção de campeões para League of Legends Solo Queue.">
+<!--    <meta property="twitter:image" content="URL_da_Imagem_de_Destaque">-->
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {% endblock %}
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('home')}}">LoL Draft Stats</a>
+      </div>
+    </nav>
+
+    <div class="container mt-4" style="min-height: 800px">
+      {% block content %}{% endblock %}
+    </div>
+    <div class="container mt-4">
+      <h3>Análise de Matchup em League of Legends: Entendendo as Estatísticas</h3>
+
+      <p>A ferramenta fornece análises avançadas para ajudar jogadores de League of Legends a entenderem melhor os matchups e a tomarem decisões estratégicas informadas. Aqui explicamos como nossas métricas são calculadas e o que cada uma delas significa.</p>
+
+
+      <h3>1. Avaliação da Força do Campeão</h3>
+
+      <p>
+        Cada campeão é avaliado com base em quatro métricas principais: Tier, Win Rate, Pick Rate e Ban Rate. Esses valores são normalizados e ponderados para calcular uma pontuação total, refletindo a força geral do campeão.
+        Tier Score: Indica a classificação geral do campeão. Quanto mais alto o tier, mais forte é considerado o campeão na meta atual.
+        Win Rate Score: A taxa de vitória do campeão em partidas recentes. Um valor alto sugere que o campeão geralmente se sai bem.
+        Pick Rate Score: A frequência com que o campeão é escolhido pelos jogadores. Um valor alto indica popularidade.
+        Ban Rate Score: Mostra quão frequentemente o campeão é banido em partidas. Um alto índice de banimento pode indicar um campeão particularmente forte ou irritante de enfrentar.
+
+        Todos os dados são retirados dos maiores sites de estatisticas de League.
+      </p>
+      <h3>2. Análise de Matchup</h3>
+      <p>
+        Esta função compara dois campeões, considerando suas forças relativas e suas relações de matchup (como um campeão se sai contra outro).
+
+        Win Probability: Calculamos a probabilidade de vitória de cada campeão no matchup, baseada nas pontuações totais de cada um.
+        Strong Against/Weak Against: Levamos em conta se um campeão tem vantagem ou desvantagem histórica contra outro, ajustando a pontuação total conforme necessário.
+      </p>
+      <h3>
+        3. Identificação de Matchups Fortes
+      </h3>
+
+      <p>
+        Esta função identifica se um campeão tem uma vantagem significativa sobre outro. Um matchup é considerado forte se o campeão adversário não estiver listado como um "weak against" para o campeão analisado.
+      </p>
+      <h3>4. Planos Futuros - Machine Learning</h3>
+
+      <p>Estamos explorando a implementação de modelos de machine learning para aprimorar ainda mais nossas análises. Isso incluirá o uso de dados históricos e tendências de jogo para prever resultados de matchups e sugerir estratégias ótimas.</p>
+      <p>A introdução de algoritmos de aprendizado de máquina permitirá análises mais dinâmicas e adaptativas, considerando uma gama mais ampla de variáveis e cenários de jogo.</p>
+      <div class="adsense-ad">
+      </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        {% block footer %}
+        <span class="text-muted">LoL Draft Stats @ mj</span>
+        {% endblock %}
+      </div>
+    </footer>
+
+    <!-- Adicionar antes do fechamento do </body> do seu HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

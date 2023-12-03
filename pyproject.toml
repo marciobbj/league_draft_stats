@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "league-draft"
+version = "0.1.0"
+description = "Veja qual o melhor draft baseado estatisticas atuais de jogo"
+authors = ["Marcio Bernardes <marciobernardes@live.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

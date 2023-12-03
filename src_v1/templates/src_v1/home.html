@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+<!--{% from "_formhelpers.html" import render_field %}-->
+{% block content %}
+{% if draft_saved %}
+<form method="post">
+    <input type="submit" name="restore_draft" class="btn btn-danger" value="Restaurar Draft Anterior">
+</form>
+{% endif %}
+<form method="post">
+    <div class="d-flex flex-column">
+        <div class="container d-flex flex-column justify-content-center">
+            <div class="container d-flex flex-row">
+            <div class="col d-flex justify-content-center">
+                <fieldset>
+                    {{ blue_draft.csrf_token }}
+                    <legend>Lado Azul</legend>
+                    <div class="form-group">
+                        {{ render_field(blue_draft.top, label="Top Lane", id="blue__topLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(blue_draft.mid, label="Mid Lane", id="blue__midLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(blue_draft.jungle, label="Jungle", id="blue__jungleLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(blue_draft.adc, label="ADC", id="blue__adcLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(blue_draft.support, label="Support", id="blue__supportLaneSelect", class_="form-control") }}
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <fieldset>
+                    {{ red_draft.csrf_token }}
+                    <legend>Lado Vermelho</legend>
+                    <div class="form-group">
+                        {{ render_field(red_draft.top, label="Top Lane", id="red__topLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(red_draft.mid, label="Mid Lane",  id="red__midLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(red_draft.jungle, label="Jungle", id="red__jungleLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(red_draft.adc, label="ADC", id="red__adcLaneSelect", class_="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(red_draft.support, label="Support", id="red__supportLaneSelect", class_="form-control") }}
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+            <input type="submit" value="Calcular Stats" class="btn btn-success btn-sm">
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function() {
+
+        $('#blue__topLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#blue__midLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#blue__jungleLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#blue__adcLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#blue__supportLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#red__topLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#red__midLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#red__jungleLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#red__adcLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+        $('#red__supportLaneSelect').select2({
+            placeholder: "Selecione um campeão",
+            allowClear: true
+        });
+
+    });
+</script>
+{% endblock %}
