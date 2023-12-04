@@ -29,24 +29,24 @@ def home():
             red_side_choices = red_draft.data
             blue_side_choices = blue_draft.data
             top_matchup = check_matchup(
-                Champion(**get_champion_stats(red_side_choices["top"])),
                 Champion(**get_champion_stats(blue_side_choices["top"])),
+                Champion(**get_champion_stats(red_side_choices["top"])),
             )
             mid_matchup = check_matchup(
-                Champion(**get_champion_stats(red_side_choices["mid"])),
                 Champion(**get_champion_stats(blue_side_choices["mid"])),
+                Champion(**get_champion_stats(red_side_choices["mid"])),
             )
             jungle_matchup = check_matchup(
-                Champion(**get_champion_stats(red_side_choices["jungle"])),
                 Champion(**get_champion_stats(blue_side_choices["jungle"])),
+                Champion(**get_champion_stats(red_side_choices["jungle"])),
             )
             adc_matchup = check_matchup(
-                Champion(**get_champion_stats(red_side_choices["adc"])),
                 Champion(**get_champion_stats(blue_side_choices["adc"])),
+                Champion(**get_champion_stats(red_side_choices["adc"])),
             )
             support_matchup = check_matchup(
-                Champion(**get_champion_stats(red_side_choices["support"])),
                 Champion(**get_champion_stats(blue_side_choices["support"])),
+                Champion(**get_champion_stats(red_side_choices["support"])),
             )
             lanes = {
                 "Top": top_matchup,

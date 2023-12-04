@@ -10,16 +10,17 @@
             </div>
             <div class="card_body">
                 <div class="row">
+                 <div class="col">
+                        <h3>Lado Vermelho</h3>
+                        <p>Probabilidade de Vitória: <b>{{ overall_comp_points['win_rate_red'] }}%</b></p>
+                        <p>Pontuação da composição: {{ overall_comp_points['average_score_red'] }}</p>
+                    </div>
                     <div class="col">
                         <h3>Lado Azul</h3>
                         <p>Probabilidade de Vitória: <b>{{ overall_comp_points['win_rate_blue'] }}%</b></p>
                         <p>Pontuação da composição: {{ overall_comp_points['average_score_blue'] }}</p>
                     </div>
-                    <div class="col">
-                        <h3>Lado Vermelho</h3>
-                        <p>Probabilidade de Vitória: <b>{{ overall_comp_points['win_rate_red'] }}%</b></p>
-                        <p>Pontuação da composição: {{ overall_comp_points['average_score_red'] }}</p>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -33,30 +34,30 @@
                 <div class="row">
                     <!-- Campeão 1 -->
                     <div class="col">
-                        <h3>{{ matchups['champion_one'].champion }}</h3>
-                        <p><b>Probabilidade de Vitória: {{ matchups['champion_one'].win_chance }}</b></p>
+                        <h3>{{ matchups['champion_blue'].champion }}</h3>
+                        <p><b>Probabilidade de Vitória: {{ matchups['champion_blue'].win_chance }}</b></p>
                         <!-- Adicionar gráficos ou barras de progresso aqui -->
                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Tier: {{ matchups['champion_one'].tier }}</li>
-                            <li class="list-group-item">Win Rate: {{ matchups['champion_one'].win_rate }}%</li>
-                            <li class="list-group-item">Pick Rate: {{ matchups['champion_one'].pick_rate }}%</li>
-                            <li class="list-group-item">Ban Rate: {{ matchups['champion_one'].ban_rate }}%</li>
-                            <li class="list-group-item">Overall Matchup Score: {{ matchups['champion_one'].total }}</li>
-                            <li class="list-group-item">Is strong against "<b>{{matchups["champion_two"].champion}}</b>": {{ matchups['champion_one'].is_strong_against }}</li>
+                            <li class="list-group-item">Tier: {{ matchups['champion_blue'].tier }}</li>
+                            <li class="list-group-item">Win Rate: {{ matchups['champion_blue'].win_rate }}%</li>
+                            <li class="list-group-item">Pick Rate: {{ matchups['champion_blue'].pick_rate }}%</li>
+                            <li class="list-group-item">Ban Rate: {{ matchups['champion_blue'].ban_rate }}%</li>
+                            <li class="list-group-item">Overall Matchup Score: {{ matchups['champion_blue'].total }}</li>
+                            <li class="list-group-item">Is strong against "<b>{{matchups["champion_red"].champion}}</b>": {{ matchups['champion_blue'].is_strong_against }}</li>
                         </ul>
                     </div>
                     <!-- Campeão 2 -->
                     <div class="col">
-                        <h3>{{ matchups['champion_two'].champion }}</h3>
-                        <p><b>Probabilidade de Vitória: {{ matchups['champion_two'].win_chance }}</b></p>
+                        <h3>{{ matchups['champion_red'].champion }}</h3>
+                        <p><b>Probabilidade de Vitória: {{ matchups['champion_red'].win_chance }}</b></p>
                         <!-- Adicionar gráficos ou barras de progresso aqui -->
                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Tier: {{ matchups['champion_two'].tier }}</li>
-                            <li class="list-group-item">Win Rate: {{ matchups['champion_two'].win_rate }}%</li>
-                            <li class="list-group-item">Pick Rate: {{ matchups['champion_two'].pick_rate }}%</li>
-                            <li class="list-group-item">Ban Rate: {{ matchups['champion_two'].ban_rate }}%</li>
-                            <li class="list-group-item">Overall Matchup Score: {{ matchups['champion_two'].total }}</li>
-                            <li class="list-group-item">Is strong against "<b>{{matchups["champion_one"].champion}}</b>": {{ matchups['champion_two'].is_strong_against }}</li>
+                            <li class="list-group-item">Tier: {{ matchups['champion_red'].tier }}</li>
+                            <li class="list-group-item">Win Rate: {{ matchups['champion_red'].win_rate }}%</li>
+                            <li class="list-group-item">Pick Rate: {{ matchups['champion_red'].pick_rate }}%</li>
+                            <li class="list-group-item">Ban Rate: {{ matchups['champion_red'].ban_rate }}%</li>
+                            <li class="list-group-item">Overall Matchup Score: {{ matchups['champion_red'].total }}</li>
+                            <li class="list-group-item">Is strong against "<b>{{matchups["champion_blue"].champion}}</b>": {{ matchups['champion_red'].is_strong_against }}</li>
                         </ul>
                     </div>
                 </div>

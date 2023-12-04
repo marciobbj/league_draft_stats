@@ -57,68 +57,68 @@ def find_strong_matchups(champion, enemy_champions):
     return strong_against
 
 
-def check_matchup(champion_one: Champion, champion_two: Champion):
+def check_matchup(champion_blue: Champion, champion_red: Champion):
     # Avaliar a força de cada campeão
-    champion_one_strength = evaluate_champion_strength(champion_one)
-    champion_two_strength = evaluate_champion_strength(champion_two)
+    champion_blue_strength = evaluate_champion_strength(champion_blue)
+    champion_red_strength = evaluate_champion_strength(champion_red)
 
     # Ajustar pontuação com base na relação weak_against
-    if champion_two.champion in champion_one.weak_against:
-        champion_one_strength["total_score"] *= Decimal(
+    if champion_red.champion in champion_blue.weak_against:
+        champion_blue_strength["total_score"] *= Decimal(
             "0.9"
         )  # Reduz em 10% se for fraco contra
-    if champion_one.champion in champion_two.weak_against:
-        champion_two_strength["total_score"] *= Decimal(
+    if champion_blue.champion in champion_red.weak_against:
+        champion_red_strength["total_score"] *= Decimal(
             "0.9"
         )  # Reduz em 10% se for fraco contra
 
     # Encontrar matchups fortes
-    strong_against_one = find_strong_matchups(champion_one, [champion_two])
-    strong_against_two = find_strong_matchups(champion_two, [champion_one])
+    strong_against_blue = find_strong_matchups(champion_blue, [champion_red])
+    strong_against_red = find_strong_matchups(champion_red, [champion_blue])
 
     # Aumentar pontuação se for forte contra
-    is_strong_against_one = False
-    is_strong_against_two = False
+    is_strong_against_blue = False
+    is_strong_against_red = False
 
-    if strong_against_one:
-        champion_one_strength["total_score"] *= Decimal(
+    if strong_against_blue:
+        champion_red_strength["total_score"] *= Decimal(
             "1.1"
         )  # Aumenta em 10% se for forte contra
-        is_strong_against_one = True
-    if strong_against_two:
-        champion_two_strength["total_score"] *= Decimal(
+        is_strong_against_blue = True
+    if strong_against_red:
+        champion_blue_strength["total_score"] *= Decimal(
             "1.1"
         )  # Aumenta em 10% se for forte contra
-        is_strong_against_two = True
+        is_strong_against_red = True
 
     # Calcular a probabilidade de vitória
     total_strength = (
-        champion_one_strength["total_score"] + champion_two_strength["total_score"]
+        champion_blue_strength["total_score"] + champion_red_strength["total_score"]
     )
-    champion_one_win_probability = champion_one_strength["total_score"] / total_strength
-    champion_two_win_probability = champion_two_strength["total_score"] / total_strength
+    champion_blue_win_probability = champion_blue_strength["total_score"] / total_strength
+    champion_red_win_probability = champion_red_strength["total_score"] / total_strength
 
     # Construção do resultado final
     output_analysis = {
-        "champion_one": {
-            "champion": champion_one.champion,
-            "tier": champion_one_strength["tier_score"],
-            "win_rate": champion_one_strength["win_rate_score"],
-            "pick_rate": champion_one_strength["pick_rate_score"],
-            "ban_rate": champion_one_strength["ban_rate_score"],
-            "total": champion_one_strength["total_score"],
-            "win_chance": f"{champion_one_win_probability * 100:.2f}%",
-            "is_strong_against": is_strong_against_one,
+        "champion_blue": {
+            "champion": champion_blue.champion,
+            "tier": champion_blue_strength["tier_score"],
+            "win_rate": champion_blue_strength["win_rate_score"],
+            "pick_rate": champion_blue_strength["pick_rate_score"],
+            "ban_rate": champion_blue_strength["ban_rate_score"],
+            "total": champion_blue_strength["total_score"],
+            "win_chance": f"{champion_blue_win_probability * 100:.2f}%",
+            "is_strong_against": is_strong_against_blue,
         },
-        "champion_two": {
-            "champion": champion_two.champion,
-            "tier": champion_two_strength["tier_score"],
-            "win_rate": champion_two_strength["win_rate_score"],
-            "pick_rate": champion_two_strength["pick_rate_score"],
-            "ban_rate": champion_two_strength["ban_rate_score"],
-            "total": champion_two_strength["total_score"],
-            "win_chance": f"{champion_two_win_probability * 100:.2f}%",
-            "is_strong_against": is_strong_against_two,
+        "champion_red": {
+            "champion": champion_red.champion,
+            "tier": champion_red_strength["tier_score"],
+            "win_rate": champion_red_strength["win_rate_score"],
+            "pick_rate": champion_red_strength["pick_rate_score"],
+            "ban_rate": champion_red_strength["ban_rate_score"],
+            "total": champion_red_strength["total_score"],
+            "win_chance": f"{champion_red_win_probability * 100:.2f}%",
+            "is_strong_against": is_strong_against_red,
         },
     }
 
@@ -147,25 +147,30 @@ def get_champion_stats(champion_name: str):
 
 
 def evaluate_overall_comp(lanes_matchups):
+    win_probability_blue = 0
+    win_probability_red = 0
     total_score_blue = 0
     total_score_red = 0
     num_lanes = len(lanes_matchups)
 
     for lane in lanes_matchups.values():
-        total_score_blue += lane['champion_one']['total']
-        total_score_red += lane['champion_two']['total']
+        win_probability_blue += float(lane['champion_blue']['win_chance'].strip('%'))
+        win_probability_red += float(lane['champion_red']['win_chance'].strip('%'))
+        print(f"{lane['champion_blue']['win_chance']} + {win_probability_blue}")
+        print(f"{lane['champion_red']['win_chance']} + {win_probability_red}")
+        total_score_blue += lane['champion_blue']['total']
+        total_score_red += lane['champion_red']['total']
 
     average_score_blue = total_score_blue / num_lanes
     average_score_red = total_score_red / num_lanes
 
-    # Calcula a probabilidade de vitória para cada lado
-    total_score_both = average_score_blue + average_score_red
-    win_rate_blue = (average_score_blue / total_score_both) * 100
-    win_rate_red = (average_score_red / total_score_both) * 100
+    # Calcula a média das probabilidades de vitória para cada lado
+    average_win_probability_blue = win_probability_blue / num_lanes
+    average_win_probability_red = win_probability_red / num_lanes
 
     return {
         "average_score_blue": round(average_score_blue, 5),
         "average_score_red": round(average_score_red, 5),
-        "win_rate_blue": round(win_rate_blue, 3),
-        "win_rate_red":  round(win_rate_red, 3)
+        "win_rate_blue": round(average_win_probability_blue, 3),
+        "win_rate_red":  round(average_win_probability_red, 3)
     }
