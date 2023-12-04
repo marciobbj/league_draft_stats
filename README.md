@@ -13,7 +13,7 @@ Análise de Matchup: Comparamos dois campeões em cada lane, levando em conta su
 
 Identificação de Matchups Fortes: Analisamos se um campeão tem vantagens significativas sobre outro, ajustando a pontuação total se necessário.
 ## Testes
-Realizei testes usando das composições que foram usadas pelas equipes que foram pro campeonato mundial de 2023,
+Realizei testes utilizando as composições que foram usadas pelas equipes que chegaram às finais do Campeonato Mundial de 2023.
 
 Jogo 1: ![t1xwei](/docs/img/t1_x_wei-1.png "T1_x_wei.png")
 Jogo 2: ![t1xwei](/docs/img/t1_x_wei-2.png "T1_x_wei.png")
