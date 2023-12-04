@@ -12,7 +12,12 @@ Avaliação da Força do Campeão: Utilizamos Tier, Win Rate, Pick Rate e Ban Ra
 Análise de Matchup: Comparamos dois campeões em cada lane, levando em conta suas forças relativas e suas relações de matchup (vantagens e desvantagens históricas). A probabilidade de vitória é calculada com base nessas pontuações.
 
 Identificação de Matchups Fortes: Analisamos se um campeão tem vantagens significativas sobre outro, ajustando a pontuação total se necessário.
+## Testes
+Realizei testes usando das composições que foram usadas pelas equipes que foram pro campeonato mundial de 2023,
 
+Jogo 1: ![t1xwei](/docs/img/t1_x_wei-1.png "T1_x_wei.png")
+Jogo 2: ![t1xwei](/docs/img/t1_x_wei-2.png "T1_x_wei.png")
+Jogo 3: ![t1xwei](/docs/img/t1_x_wei-3.png "T1_x_wei.png")
 ## Cálculo de Composições
 Calculamos uma média ponderada das pontuações de cada campeão por lane, considerando matchups fortes e fracos. Isso resulta em uma estimativa da taxa de vitória para cada composição de equipe, permitindo comparações estratégicas lado a lado.
 
